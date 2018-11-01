@@ -1,10 +1,6 @@
 package Model;
 
 public class Cliente {
-	/*
-	 * Os clientes com três devoluções de pedidos são desativados e só poderão
-	 * fazer novos pedidos se forem reativados pelo funcionário
-	 */
 
 	private String nome;
 	private int telefone;

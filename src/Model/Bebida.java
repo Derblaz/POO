@@ -18,16 +18,19 @@ public class Bebida extends ItemCardapio {
 	public void setQtdEstoque(int qtdEstoque) {
 		this.qtdEstoque = qtdEstoque;
 	}
-	public void baixar(int qtd){
+	public boolean baixar(int qtd){
 		if(qtd<this.qtdEstoque){
-			this.qtdEstoque -= qtd;
-		}else
+			this.qtdEstoque -= qtd;			
+			return true;
+		}
+		else{
 			System.out.println("Quantidade em estoque insuficiente"
 					+"\nEstoque atual: "+this.qtdEstoque);
+			return false;
+		}	
 	}
 @Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return "Quantidade em estoque: "+ qtdEstoque;
 	}	
 

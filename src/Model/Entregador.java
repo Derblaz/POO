@@ -2,6 +2,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Entregador {
 	private String nome;
 	public String placaDoVeiculo;
@@ -9,8 +10,7 @@ public class Entregador {
 
 	public Entregador(String nome, String placaDoVeiculo) {
 		this.nome = nome;
-		this.placaDoVeiculo = placaDoVeiculo;
-
+		this.placaDoVeiculo = placaDoVeiculo;	
 	}
 
 	public String getNome() {
@@ -41,6 +41,7 @@ public class Entregador {
 		this.pedido.add(pedido);
 		pedido.setSituacao("Em andamento");
 		pedido.setEntregador(this);
+		
 	}
 
 }

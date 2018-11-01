@@ -1,29 +1,21 @@
 package Model;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+
 public class Pedido {
-	/*
-	 * Não aceita pedidos com quantidade superior ao estoque de bebidas
-	 * 
-	 * Uma vez que um pedido é feito, ele é considerado pendente até que seja
-	 * passado para um entregador. Quando o entregador retorna com o pagamento,
-	 * o pedido é considerado atendido.
-	 * 
-	 * Apenas pedidos ainda pendentes podem ser alterados ou cancelados pelo
-	 * cliente. No último caso, o pedido é excluído do sistema. Caso o
-	 * entregador não encontre o cliente em seu endereço e retorne com os
-	 * produtos, o pedido deve ser considerado devolvido e não deverá ser
-	 * excluído do sistema.
-	 */
+
 	private String situacao;
 	private Date data;
 	private Cliente cliente;
 	private Entregador entregador;
-	private Cheque cheque;
+//	private Cheque cheque;
 	private List<ItemPedido> itens = new ArrayList<>();
-
+	
+//	private SimpleDateFormat dataFormat = new SimpleDateFormat("dd/MM/yyyy");
+	
 	public Pedido( Cliente cliente) {
 		if(cliente.isAtivo()){
 			this.situacao = "Pendente";		
@@ -86,9 +78,9 @@ public class Pedido {
 
 	public void addItem(int qtd, ItemCardapio itemcardapio){
 		if(itemcardapio instanceof Bebida ){
-			((Bebida) itemcardapio).baixar(qtd);
-		}
-		//condição para adicionar pedido
+			if(((Bebida) itemcardapio).baixar(qtd))
+				this.itens.add(new ItemPedido(qtd,itemcardapio));
+		}else
 		this.itens.add(new ItemPedido(qtd,itemcardapio));
 	}
 	
@@ -108,6 +100,26 @@ public class Pedido {
 			}
 			
 		}
+	}
+
+	public Cliente getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente;
+	}
+
+	public List<ItemPedido> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemPedido> itens) {
+		this.itens = itens;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
 	}
 
 }
